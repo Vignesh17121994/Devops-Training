@@ -1,0 +1,24 @@
+Agenda :
+
+Getting Started with DevOps?
+
+What is DevOps?
+
+What is AWS ?
+
+Roles and Responsibilities of DevOps Engineer?
+
+How to become an AWS or Azure DevOps Engineer?
+
+What is Cloud Computing?
+
+Types of Cloud Computing Services?
+
+Vendors in Cloud Computing?
+
+# ----------------------------------------------------------------- #
+Explore unto Cloud Computing vendor i.e. AWS 
+
+Gettstarted with AWS 
+
+# ----------------------------------------------------------------- #

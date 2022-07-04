@@ -1,0 +1,26 @@
+#!/bin/bash 
+
+# Setup Hostname 
+sudo hostnamectl set-hostname "db.cloudbinary.io"
+
+# Update the hostname part of Host File
+echo "`hostname -I | awk '{ print $1 }'` `hostname`" >> /etc/hosts 
+
+# Update the Repository 
+sudo apt-get update
+
+# Download Install & configure Softwares 
+sudo apt-get install tree unzip -y 
+
+# Install Webserver
+sudo apt-get install mysql-server -y 
+
+# To Restart SSM Agent on Ubuntu 
+sudo systemctl restart snap.amazon-ssm-agent.amazon-ssm-agent.service
+
+# Attach Instance profile To EC2 Instance 
+# aws ec2 associate-iam-instance-profile --iam-instance-profile Name=SA-EC2-SSM --instance-id "i-01fc25e0bc2533277"
+
+# To terminate an Amazon EC2 instance
+# aws ec2 terminate-instances --instance-ids "i-098e2c1b31ac1c424"
+

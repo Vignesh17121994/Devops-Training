@@ -1,0 +1,21 @@
+Agenda :
+
+- Cloud Computing :
+    - AWS : GUI & CLI 
+        - Services :
+            - Compute :
+                - Instances :
+                    - Linux 
+                    - Windows 
+
+- Unix/Linux File System
+- Linxu Commands
+- AWS Session Manager 
+- Text Editors in Unix/Linux/MacOS : 
+    - vi 
+    - vim 
+    - nano 
+
+Q?
+
+

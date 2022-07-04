@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Setup Hostname 
+sudo hostnamectl set-hostname "tomcat.cloudbinary.io"
+
+# Update the hostname part of Host File
+echo "`hostname -I | awk '{ print $1 }'` `hostname`" >> /etc/hosts 
+
+# Update Ubuntu Repository 
+sudo apt-get update 
+
+# Download, & Install Utility Softwares 
+sudo apt-get install unzip tree -y 
+
+# Download, Install Java 11
+sudo apt-get install openjdk-11-jdk -y
+
+# Backup the Environment File
+sudo cp -pvr /etc/environment "/etc/environment_$(date +%F_%R)"
+
+# Create Environment Variables 
+echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment
+
+# Compile the Configuration 
+source /etc/environment

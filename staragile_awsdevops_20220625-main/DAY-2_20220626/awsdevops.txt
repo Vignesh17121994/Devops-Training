@@ -1,0 +1,28 @@
+This is a text file.
+
+We are part of Text Editors
+
+Analytics
+Application Integration
+Business Productivity
+Compute :
+
+
+Containers
+Customer Engagement
+Database
+Developer tools
+End User Computing
+Front-End Web & Mobile
+Game Tech
+Internet of Things
+Machine Learning
+Management & Governance
+Media Services
+Migration & Transfer
+Networking & Content Delivery
+Robotics
+Security, Identity, & Compliance
+Serverless
+Storage
+

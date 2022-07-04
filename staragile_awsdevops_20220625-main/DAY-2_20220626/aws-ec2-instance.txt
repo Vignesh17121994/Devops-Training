@@ -1,0 +1,73 @@
+AWS Basics 
+
+Operating Systems :
+    - Unix 
+    - MacOS 
+    - Windows 
+    - Linux 
+
+AWS --> Services :
+    - Compute :
+        - EC2 :
+            - Instances 
+                - Linux (Ubuntu - 22.04 LTS )
+                - Windows
+#------------------------------------------------------------------------#
+Creating EC2 Instance using AWS Management Console(GUI) :
+#------------------------------------------------------------------------#
+
+https://aws.amazon.com/about-aws/global-infrastructure/
+
+Step 1: Choose an Amazon Machine Image (AMI) | Linux --> Ubuntu 22.04  | ami-068257025f72f470d
+
+Step 2: Choose an Instance Type : t2.micro 
+
+Step 3: SSH keys : awskeys-mum 
+
+Step 3: Configure Instance Details : Number of instances : 1 
+
+    - Configure Instance Details : VPC-->SUBNET: Default VPC and One Of the Subnet [vpc-ec5c5d84]
+
+    - Configure Instance Details : Advanced Details : Execute Scripts i.e. Shell OR Powershell:
+
+Step 4: Add Storage : 8 GB
+
+Step 5: Add Tags : Adding Tags
+
+Step 6: Configure Security Group: Allow TCP Ports : 22 (SSH)
+
+#------------------------------------------------------------------------#
+#!/bin/bash
+
+# Package Management 
+apt-get update 
+
+# Download, Install & Configure Tree Command 
+apt-get install tree -y 
+
+# Create a File 
+echo "Welcome To AWS DevOps" >> /home/ubuntu/staragile.txt
+
+#-------------------- Session Manager ----------------------------------#
+We weren't able to connect to your instance. Common reasons for this include:
+
+SSM Agent isn't installed on the instance. You can install the agent on both Windows instances and Linux instances.
+
+The required IAM instance profile isn't attached to the instance. You can attach a profile using AWS Systems Manager Quick Setup.
+
+Session Manager setup is incomplete. For more information, see Session Manager Prerequisites.
+
+Session Manager usage:
+Connect to your instance without SSH keys or a bastion host.
+
+Sessions are secured using an AWS Key Management Service key.
+
+You can log session commands and details in an Amazon S3 bucket or CloudWatch Logs log group.
+
+Configure sessions on the Session Manager Preferences page.
+#------------------------------------------------------------------------#
+
+https://docs.aws.amazon.com/systems-manager/latest/userguide/agent-install-ubuntu-64-snap.html
+
+sudo systemctl restart snap.amazon-ssm-agent.amazon-ssm-agent.service
+

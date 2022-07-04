@@ -1,0 +1,19 @@
+Apache HTTP Server :
+
+Linux Distributions : 
+
+    - Redhat/CentOS/AmazonLinux/OracleLinux : httpd | Nginx
+
+    - Debian/Ubuntu : apache2 | Nginx
+
+Windows  :
+    - IIS (Internet Information servicess)
+
+What is the use of Webserver?
+    - To Host a Website 
+        - Html, CSS & Js 
+
+        - Java Code can be deployed --> .jar / .war / .ear 
+
+        - Deploy Python, Angular, perl etc.. 
+
