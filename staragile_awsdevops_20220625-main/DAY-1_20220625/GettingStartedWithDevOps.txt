@@ -158,11 +158,3 @@ cloudbinary-prod : AWS Account : EC2, S3, Database etc
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html
 
 https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html
-
-
-
-
-
-
-
-

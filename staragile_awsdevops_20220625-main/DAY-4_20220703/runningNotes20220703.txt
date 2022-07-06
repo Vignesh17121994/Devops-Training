@@ -1,0 +1,14 @@
+Agenda :
+
+Application Server :
+    - Apache Tomcat
+
+Java Web Application Project:
+
+Continuous Integration :
+    - Jenkins
+
+Binary Code Repository :
+    - Jfrog 
+
+Q?

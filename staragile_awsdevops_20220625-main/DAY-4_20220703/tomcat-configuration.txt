@@ -1,0 +1,144 @@
+
+You are not authorized to view this page.
+
+By default the Manager is only accessible from a browser running on the same machine as Tomcat. 
+
+If you wish to modify this restriction, you'll need to edit the Manager's context.xml file.
+
+If you have already configured the Manager application to allow access and you have used your browsers back button, used a saved book-mark or similar then you may have triggered the cross-site request forgery (CSRF) protection that has been enabled for the HTML interface of the Manager application. You will need to reset this protection by returning to the main Manager page. Once you return to this page, you will be able to continue using the Manager application's HTML interface normally. If you continue to see this access denied message, check that you have the necessary permissions to access this application.
+
+If you have not changed any configuration files, please examine the file conf/tomcat-users.xml in your installation. That file must contain the credentials to let you use this webapp.
+
+For example, to add the manager-gui role to a user named tomcat with a password of s3cret, add the following to the config file listed above.
+
+<role rolename="manager-gui"/>
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+Note that for Tomcat 7 onwards, the roles required to use the manager application were changed from the single manager role to the following four roles. You will need to assign the role(s) required for the functionality you wish to access.
+
+manager-gui - allows access to the HTML GUI and the status pages
+manager-script - allows access to the text interface and the status pages
+manager-jmx - allows access to the JMX proxy and the status pages
+manager-status - allows access to the status pages only
+The HTML interface is protected against CSRF but the text and JMX interfaces are not. To maintain the CSRF protection:
+
+Users with the manager-gui role should not be granted either the manager-script or manager-jmx roles.
+If the text or jmx interfaces are accessed through a browser (e.g. for testing since these interfaces are intended for tools not humans) then the browser must be closed afterwards to terminate the session.
+For more information - please see the Manager App How-To.
+
+You are not authorized to view this page.
+
+By default the Host Manager is only accessible from a browser running on the same machine as Tomcat. 
+If you wish to modify this restriction, you'll need to edit the Host Manager's context.xml file.
+
+If you have already configured the Host Manager application to allow access and you have used your browsers back button, used a saved book-mark or similar then you may have triggered the cross-site request forgery (CSRF) protection that has been enabled for the HTML interface of the Host Manager application. You will need to reset this protection by returning to the main Host Manager page. Once you return to this page, you will be able to continue using the Host Manager application's HTML interface normally. If you continue to see this access denied message, check that you have the necessary permissions to access this application.
+
+If you have not changed any configuration files, please examine the file conf/tomcat-users.xml in your installation. That file must contain the credentials to let you use this webapp.
+
+For example, to add the admin-gui role to a user named tomcat with a password of s3cret, add the following to the config file listed above.
+
+<role rolename="admin-gui"/>
+<user username="tomcat" password="s3cret" roles="admin-gui"/>
+Note that for Tomcat 7 onwards, the roles required to use the host manager application were changed from the single admin role to the following two roles. You will need to assign the role(s) required for the functionality you wish to access.
+
+admin-gui - allows access to the HTML GUI
+admin-script - allows access to the text interface
+The HTML interface is protected against CSRF but the text interface is not. To maintain the CSRF protection:
+
+Users with the admin-gui role should not be granted the admin-script role.
+If the text interface is accessed through a browser (e.g. for testing since this interface is intended for tools not humans) then the browser must be closed afterwards to terminate the session.
+
+
+
+Application servers :
+    - Apache Tomcat 
+        - UI :
+            - 3 Pages : 
+                1. Server Status :
+                    You are not authorized to view this page.
+                    By default the Manager is only accessible from a browser running on the same machine as Tomcat. 
+                    If you wish to modify this restriction, you'll need to edit the Manager's context.xml file.
+
+                To Fix :
+                └── manager
+                    ├── META-INF
+                        │   └── context.xml
+
+                2. Manager App :
+                    You are not authorized to view this page.
+                    By default the Manager is only accessible from a browser running on the same machine as Tomcat. 
+                    If you wish to modify this restriction, you'll need to edit the Manager's context.xml file.
+
+                To Fix :
+                └── manager
+                    ├── META-INF
+                        │   └── context.xml
+
+# cp -pvr /opt/tomcat/webapps/manager/META-INF/context.xml "/opt/tomcat/webapps/manager/META-INF/context.xml_$(date +%F_%R)"
+# vi /opt/tomcat/webapps/manager/META-INF/context.xml
+
+# grep -H -n "|.*" webapps/manager/META-INF/context.xml
+# webapps/manager/META-INF/context.xml:20:         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />
+
+
+                3. Host Manager :
+                    You are not authorized to view this page.
+                    By default the Host Manager is only accessible from a browser running on the same machine as Tomcat. 
+                    If you wish to modify this restriction, you'll need to edit the Host Manager's context.xml file.
+
+                To Fix :
+                    ├── host-manager
+                    │   ├── META-INF
+                    │   │   └── context.xml
+
+# cp -pvr /opt/tomcat/webapps/host-manager/META-INF/context.xml "/opt/tomcat/webapps/manager/META-INF/context.xml_$(date +%F_%R)"
+
+# vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
+
+# grep -H -n "|.*" webapps/host-manager/META-INF/context.xml
+# webapps/host-manager/META-INF/context.xml:20:         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />
+
+                - Enable Those 3 Pages from Globally
+            - User  : admin 
+            - Password : redhat@123
+            - Roles :
+                - Admin : 2  : Roles for Host Manager
+                    admin-gui - allows access to the HTML GUI
+                    admin-script - allows access to the text interface
+                
+                - Manager : 4 : Roles for Server Status & Manager App 
+                    manager-gui - allows access to the HTML GUI and the status pages
+                    manager-script - allows access to the text interface and the status pages
+                    manager-jmx - allows access to the JMX proxy and the status pages
+                    manager-status - allows access to the status pages only
+
+
+
+# To delete last line and which contains </tomcat-users>
+sed -i '$d' /opt/tomcat/conf/tomcat-users.xml
+
+#Add User & Attach Roles to Tomcat 
+
+echo '<role rolename="manager-gui"/>'  >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<role rolename="manager-script"/>' >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<role rolename="manager-jmx"/>'    >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<role rolename="manager-status"/>' >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<role rolename="admin-gui"/>'     >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<role rolename="admin-script"/>' >> /opt/tomcat/conf/tomcat-users.xml
+
+echo '<user username="admin" password="redhat@123" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>' >> /opt/tomcat/conf/tomcat-users.xml
+
+echo "</tomcat-users>" >> /opt/tomcat/conf/tomcat-users.xml
+
+
+Creating a Java Project :
+
+https://start.spring.io/
+
+Build Tool :
+
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
