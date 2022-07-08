@@ -22,4 +22,4 @@ sudo systemctl restart amazon-ssm-agent
 --instance-id "i-04707ff7a89bb9525"
 
 # To terminate an Amazon EC2 instance
-# aws ec2 terminate-instances --instance-ids "i-04707ff7a89bb9525"
+# aws ec2 terminate-instances --instance-ids "i-0d3b907eb546a8dfd"

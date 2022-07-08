@@ -15,6 +15,10 @@ sudo apt-get update
 # Download Install & configure Softwares 
 sudo apt-get install tree unzip -y 
 
+ps-aux | grep apache2
+dpkg -l | grep apache2
+systemctl status apache2
+
 # Install Webserver
 sudo apt-get install apache2 -y 
 
@@ -30,3 +34,4 @@ sudo systemctl restart snap.amazon-ssm-agent.amazon-ssm-agent.service
 # To terminate an Amazon EC2 instance
 # aws ec2 terminate-instances --instance-ids "i-098e2c1b31ac1c424"
 
+cat index.html
