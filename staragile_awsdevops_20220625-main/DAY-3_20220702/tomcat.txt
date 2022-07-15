@@ -23,3 +23,12 @@ echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment
 
 # Compile the Configuration 
 source /etc/environment
+
+#go to opt folder to check tomcat install
+cd /opt/
+
+#install link for tomcat 8
+https://downloads.apache.org/tomcat/tomcat-8/v8.5.81/bin/
+
+
+sudo wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz
